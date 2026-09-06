@@ -24,16 +24,9 @@
         container: 'map', // container id
         style: 'https://demotiles.maplibre.org/style.json', // style URL
         center: [2.3, 49.9],  // Longitude, Latitude (centre approximatif de la Somme)
-            zoom: 7,
+            zoom: 9,
         maplibreLogo: true
     });
-    /*map.addSource('communes', {
-        type: 'vector',
-        tiles: [
-            'http://localhost:3000/commune/{z}/{x}/{y}'
-        ]
-    });
-    */
    map.addControl(
     new maplibregl.NavigationControl(),
     'top-right'
@@ -52,7 +45,6 @@
                 'fill-opacity': 0.5
             }
         });
-        // 2. Les noms des communes
         map.addLayer({
             id: 'communes-labels',
             type: 'symbol',
@@ -63,6 +55,27 @@
                 'text-size': 14
             }
         });
+        
+        // Amiens — toujours visible
+       /* map.addLayer({
+            id: 'commune-label-amiens',
+            type: 'symbol',
+            source: 'communes',
+            'source-layer': 'commune',
+
+            filter: ['==', ['get', 'nom_officiel'], 'Amiens'],
+
+            layout: {
+                //'text-field': ['get', 'nom_officiel'],
+                'text-field': ['concat',
+    ['get', 'nom_officiel'],
+    ' #',
+    ['to-string', ['get', 'fid']]],
+                'text-size': 14,
+                'text-allow-overlap': false
+            }
+        });
+        */
     });
 </script>
 </body>

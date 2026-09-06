@@ -1,5 +1,18 @@
 Comment retrouver la bdd 7z gpkg du projet
 
+se rendre ici
+
+https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_BD-TOPO
+
+dans Téléchargements et flux(152) cliquer sur
+
+BD TOPO® V3
+
+ensuite cliquer sur telecharger
+
+choisir format gpkg
+
+prendre le premier élément dispo
 
 https://data.geopf.fr/telechargement/resource/BDTOPO?lang=FR&zone=D080&format=GPKG
 
