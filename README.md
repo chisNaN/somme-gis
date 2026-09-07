@@ -40,3 +40,20 @@ ogr2ogr \
   --config PG_USE_COPY YES \
   -gt 200000 \
   -progress
+
+  docker exec -it postgis_container psql \
+  -U postgres \
+  -d postgres \
+  -c "CREATE MATERIALIZED VIEW bdtopo.commune_label_point AS SELECT fid, nom_officiel, ST_PointOnSurface(geometrie)::geometry(Point,2154) AS geometrie FROM bdtopo.commune;"
+
+  docker exec -it postgis_container psql \
+  -U postgres \
+  -d postgres \
+  -c "CREATE INDEX commune_label_point_geom_gist ON bdtopo.commune_label_point USING GIST (geometrie);"
+
+  docker exec -it postgis_container psql \
+  -U postgres \
+  -d postgres \
+  -c "SELECT f_table_schema, f_table_name, f_geometry_column, type, srid FROM geometry_columns WHERE f_table_schema = 'bdtopo' AND f_table_name = 'commune_label_point';"
+
+  docker restart martin
