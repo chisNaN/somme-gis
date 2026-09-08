@@ -1,0 +1,7 @@
+flowchart TD
+    A["BD TOPO® (IGN)<br/>GPKG 7z, cartes.gouv.fr"] -->|ogr2ogr import| B["PostGIS (postgis_container)<br/>commune, cours_d_eau, commune_label_point"]
+    B --> C["Martin<br/>Diffusion MVT via HTTP :3000"]
+
+    style A fill:#D3D1C7,stroke:#5F5E5A,color:#2C2C2A
+    style B fill:#9FE1CB,stroke:#0F6E56,color:#04342C
+    style C fill:#9FE1CB,stroke:#0F6E56,color:#04342C
