@@ -21,16 +21,16 @@
     import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.7.0/dist/maplibre-gl.mjs';
 
     const map = new maplibregl.Map({
-        container: 'map', // container id
-        style: 'https://demotiles.maplibre.org/style.json', // style URL
-        center: [2.3, 49.9],  // Longitude, Latitude (centre approximatif de la Somme)
-            zoom: 9,
-        maplibreLogo: true
-    });
-   map.addControl(
-    new maplibregl.NavigationControl(),
-    'top-right'
-    );
+    container: 'map',
+    style: 'https://demotiles.maplibre.org/style.json', // style URL
+    //style: 'https://tiles.openfreemap.org/styles/liberty',
+    //style: 'https://tiles.openfreemap.org/styles/bright',
+    //style: 'https://data.geopf.fr/annexes/ressources/vectorTiles/styles/PLAN.IGN/standard.json',
+    center: [2.3, 49.9],
+    zoom: 9,
+    maplibreLogo: true
+});
+    map.addControl(new maplibregl.NavigationControl(),'top-right');
     map.on('load', () => {
         map.addSource('communes', {
             type: 'vector',
@@ -40,6 +40,10 @@
                 type: 'vector',
                 url: 'http://localhost:3000/commune_label_point'
             });
+        map.addSource('cours-eau', {
+            type: 'vector',
+            url: 'http://localhost:3000/cours_d_eau'
+        });
         map.addLayer({
             id: 'communes-fill',
             type: 'fill',
@@ -57,42 +61,20 @@
             layout: {
                 'text-field': ['get', 'nom_officiel'],
                 'text-size': 14,
-                'text-allow-overlap': false
+                'text-allow-overlap': false,
+                //'text-font': ['Source Sans Pro Regular'],
             }
         });
-        /*
-        map.addLayer({
-            id: 'communes-labels',
-            type: 'symbol',
-            source: 'communes',
-            'source-layer': 'commune',
-            layout: {
-                'text-field': ['get', 'nom_officiel'],
-                'text-size': 14
+       map.addLayer({
+            id: 'cours-eau-line',
+            type: 'line',
+            source: 'cours-eau',
+            'source-layer': 'cours_d_eau',
+            paint: {
+                'line-width': 2
             }
         });
-        
-        // Amiens — toujours visible
-       /* map.addLayer({
-            id: 'commune-label-amiens',
-            type: 'symbol',
-            source: 'communes',
-            'source-layer': 'commune',
-
-            filter: ['==', ['get', 'nom_officiel'], 'Amiens'],
-
-            layout: {
-                //'text-field': ['get', 'nom_officiel'],
-                'text-field': ['concat',
-    ['get', 'nom_officiel'],
-    ' #',
-    ['to-string', ['get', 'fid']]],
-                'text-size': 14,
-                'text-allow-overlap': false
-            }
-        });
-        */
-    });
+    });   
 </script>
 </body>
 </html>

@@ -24,5 +24,12 @@ services:
     depends_on:
       - postgis
 
+  maputnik:
+    image: ghcr.io/maplibre/maputnik:main
+    container_name: maputnik
+    restart: always
+    ports:
+      - "8888:8000"
+
 volumes:
   postgis_data:
