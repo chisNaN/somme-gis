@@ -404,7 +404,11 @@
         }
       }
     },
-    "fqffcv9": {"type": "vector", "url": "http://localhost:3000/commune"}
+    "fqffcv9": {"type": "vector", "url": "http://localhost:3000/commune"},
+    "wtv7bm9": {
+      "type": "vector",
+      "url": "http://localhost:3000/commune_label_point"
+    }
   },
   "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   "layers": [
@@ -773,9 +777,22 @@
       "type": "fill",
       "source": "fqffcv9",
       "source-layer": "commune",
+      "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "rgba(183, 147, 147, 1)",
         "fill-outline-color": "rgba(16, 4, 4, 1)"
+      }
+    },
+    {
+      "id": "communes-labels",
+      "type": "symbol",
+      "source": "wtv7bm9",
+      "source-layer": "commune_label_point",
+      "layout": {
+        "visibility": "visible",
+        "symbol-placement": "point",
+        "text-field": ["get", "nom_officiel"],
+        "text-size": 12
       }
     }
   ],
