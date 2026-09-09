@@ -24,10 +24,14 @@
         style: './styles/somme.json',
         center: [2.3, 49.9],
         zoom: 9,
-        maplibreLogo: true
+        maplibreLogo: true,
+        //projection: 'globe'
     });
-        map.addControl(new maplibregl.NavigationControl(),'top-right');
-
+    map.addControl(new maplibregl.NavigationControl(),'top-right');
+    map.on('style.load', () => {
+        map.setProjection({ type: 'globe'});
+        console.log(map.getProjection());
+    });
     </script>
 </body>
 </html>
