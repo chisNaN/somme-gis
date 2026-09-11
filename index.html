@@ -32,6 +32,21 @@
         map.setProjection({ type: 'globe'});
         console.log(map.getProjection());
     });
+    map.on('zoom', () => {
+        const zoom = map.getZoom();
+        //console.log('zoom => ', zoom)
+        if (zoom < 7) {
+            map.setFilter('communes-labels', [
+                '==',
+                ['get', 'nom_officiel'],
+                'Amiens'
+            ]);
+            map.setLayoutProperty('communes-labels', 'text-size', 16);
+        } else {
+            map.setFilter('communes-labels', null);
+            map.setLayoutProperty('communes-labels', 'text-size', 12);
+        }
+    });
     </script>
 </body>
 </html>
