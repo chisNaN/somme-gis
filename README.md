@@ -57,3 +57,11 @@ ogr2ogr \
   -c "SELECT f_table_schema, f_table_name, f_geometry_column, type, srid FROM geometry_columns WHERE f_table_schema = 'bdtopo' AND f_table_name = 'commune_label_point';"
 
   docker restart martin
+
+  partie pour creer la view (non materialisée) des chefs lieux departementaux
+
+  docker exec -it postgis_container psql -U postgres -d postgres -c "CREATE VIEW bdtopo.commune_chefs_lieux AS SELECT * FROM bdtopo.commune WHERE chef_lieu_de_departement = TRUE;"
+
+  docker exec -it postgis_container psql -U postgres -d postgres -c "SELECT nom_officiel, chef_lieu_de_departement FROM bdtopo.commune_chefs_lieux;"
+
+  docker exec -it postgis_container psql -U postgres -d postgres -c "\dv bdtopo.commune_chefs_lieux"

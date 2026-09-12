@@ -408,6 +408,10 @@
     "wtv7bm9": {
       "type": "vector",
       "url": "http://localhost:3000/commune_label_point"
+    },
+    "ym4fz47": {
+      "type": "vector",
+      "url": "http://localhost:3000/commune_chefs_lieux"
     }
   },
   "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
@@ -788,11 +792,25 @@
       "type": "symbol",
       "source": "wtv7bm9",
       "source-layer": "commune_label_point",
+      "minzoom": 7,
       "layout": {
         "visibility": "visible",
         "symbol-placement": "point",
         "text-field": ["get", "nom_officiel"],
         "text-size": 12
+      }
+    },
+    {
+      "id": "chef-lieu-dep-label",
+      "type": "symbol",
+      "source": "ym4fz47",
+      "source-layer": "commune_chefs_lieux",
+      "minzoom": 0,
+      "maxzoom": 7,
+      "layout": {
+        "visibility": "visible",
+        "text-field": ["get", "nom_officiel"],
+        "text-size": 16
       }
     }
   ],
