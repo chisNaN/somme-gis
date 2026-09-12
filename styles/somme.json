@@ -805,7 +805,7 @@
       "type": "symbol",
       "source": "ym4fz47",
       "source-layer": "commune_chefs_lieux",
-      "minzoom": 0,
+      "minzoom": 5.68,
       "maxzoom": 7,
       "layout": {
         "visibility": "visible",
